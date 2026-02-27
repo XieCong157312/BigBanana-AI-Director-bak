@@ -396,6 +396,7 @@ export const AVAILABLE_CHAT_MODELS = [
  */
 export const AVAILABLE_IMAGE_MODELS = [
   { name: 'Gemini 3 Pro Image', value: 'gemini-3-pro-image-preview', description: '高质量图片生成' },
+  { name: 'Gemini 3.1 Flash Image (Nano Banana 2)', value: 'gemini-3.1-flash-image-preview', description: '价格更低，速度更快' },
 ];
 
 /**

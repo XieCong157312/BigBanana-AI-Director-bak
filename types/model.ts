@@ -321,6 +321,17 @@ export const BUILTIN_IMAGE_MODELS: ImageModelDefinition[] = [
     isEnabled: true,
     params: { ...DEFAULT_IMAGE_PARAMS },
   },
+  {
+    id: 'gemini-3.1-flash-image-preview',
+    name: 'Gemini 3.1 Flash Image Preview(Nano Banana 2)',
+    type: 'image',
+    providerId: 'antsk',
+    endpoint: '/v1beta/models/gemini-3.1-flash-image-preview:generateContent',
+    description: 'Google Nano Banana 2 图片生成模型，成本更低、速度更快',
+    isBuiltIn: true,
+    isEnabled: true,
+    params: { ...DEFAULT_IMAGE_PARAMS },
+  },
 ];
 
 /**

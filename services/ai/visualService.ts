@@ -441,8 +441,10 @@ const resolveImageModelRoutingFamily = (model: any): ImageModelRoutingFamily => 
   const identity = `${model?.id || ''} ${model?.apiModel || ''} ${model?.name || ''}`.toLowerCase();
   const isNanoBanana =
     identity.includes('gemini-3-pro-image-preview') ||
+    identity.includes('gemini-3.1-flash-image-preview') ||
     identity.includes('nano banana') ||
-    identity.includes('gemini 3 pro image');
+    identity.includes('gemini 3 pro image') ||
+    identity.includes('gemini 3.1 flash image');
   return isNanoBanana ? 'nano-banana' : 'generic';
 };
 
