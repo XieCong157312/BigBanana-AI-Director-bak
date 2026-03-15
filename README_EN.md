@@ -10,6 +10,13 @@
 **BigBanana AI Director** is an **AI-powered, one-stop platform** for **short dramas** and **motion comics**, built for creators who want to go from idea to final video fast.
 
 Moving away from the traditional "slot machine" style of random generation, BigBanana adopts an industrial **"Script-to-Asset-to-Keyframe"** workflow. With deep integration of AntSK API’s advanced AI models, it enables **one-sentence to complete drama** — fully automated from **script** to **final video**, while maintaining precise control over character consistency, scene continuity, and camera movement.
+
+## Release Policy
+
+Due to repeated plagiarism, reposting without attribution, and several severe abuse cases, future updates will be delivered only through official Docker images and will no longer be published as updated public source code.
+
+This repository remains available as public documentation and a historical reference snapshot. For deployment and upgrades, use `docker-compose.yaml` with the official images.
+
 ## UI Showcase
 
 ### Project Management
@@ -108,10 +115,11 @@ This project deeply integrates [**AntSK API Platform**](https://api.antsk.cn/), 
 
 [**Sign Up for Free Credits**](https://api.antsk.cn/) →
 
-## ⚠️ Open-Source & “Free” Clarification (Please Read)
+## ⚠️ Source Availability & “Free” Clarification (Please Read)
 
-* **Model usage note**: This open-source project’s default workflow requires a capability-matched model stack, for example an LLM (such as **GPT-5.2**), an image model (such as **Nano Banana Pro**), and a video model (such as **Sora-2** / **Veo-3.1**). If you want to connect other providers or models, you can modify and adapt it yourself.
-* **Why we open-sourced this**: Our goal is to lower the barrier to entry and make creation more accessible. The project code is open-source, and model configuration is replaceable.
+* **How future updates are delivered**: Because of repeated plagiarism, unattributed reposting, and malicious misuse, future feature updates will be distributed only through official Docker images and will no longer be synced as public source code.
+* **What this repository is now**: This public repository remains as documentation and a historical reference snapshot. For deployment and upgrades, use `docker-compose.yaml` to pull the official images.
+* **Model usage note**: The currently runnable version still requires a capability-matched model stack, for example an LLM (such as **GPT-5.2**), an image model (such as **Nano Banana Pro**), and a video model (such as **Sora-2** / **Veo-3.1**). If you want to connect other providers or models, you can modify and adapt it yourself.
 * **About our API service**: The API we provide is mainly for quick experience and integration, not as a core profit source.
 * **Freedom of choice**: If our API does not meet your expectations, you can absolutely use official OpenAI or Google services directly (even at a higher price). That is a normal and respected choice.
 * **About “always free” expectations**: If your primary criterion is long-term “must be free,” this project may not be the best fit for you.
@@ -157,80 +165,35 @@ No client download is required. Use the web version directly in your browser:
 
 ---
 
-## Getting Started
+## Deployment
 
-### Option 1: Local Development
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. Install dependencies
-npm install
-
-# 3. Start development server
-npm run dev
-
-# 4. Open in browser
-# Visit http://localhost:3000
-```
-
-### Option 2: Docker Deployment (Recommended)
+### Deploy with docker-compose.yaml
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+# 1. Make sure docker-compose.yaml is in the current directory
 
-# 2. Build and start with Docker Compose
-docker-compose up -d --build
+# 2. Pull the latest official images
+docker-compose -f docker-compose.yaml pull
 
-# 3. Open in browser
-# Visit http://localhost:3005
-
-# View logs
-docker-compose logs -f
-
-# Stop container
-docker-compose down
-```
-
-### Option 3: Using Docker Commands
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. Build image
-docker build -t bigbanana-ai .
-
-# 3. Run container
-docker run -d -p 3005:80 --name bigbanana-ai-app bigbanana-ai
+# 3. Start the services
+docker-compose -f docker-compose.yaml up -d
 
 # 4. Open in browser
 # Visit http://localhost:3005
 
 # View logs
-docker logs -f bigbanana-ai-app
+docker-compose -f docker-compose.yaml logs -f
 
-# Stop container
-docker stop bigbanana-ai-app
+# Stop the services
+docker-compose -f docker-compose.yaml down
 ```
 
-### Other Commands
+### Update to the latest release
 
 ```bash
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Force rebuild Docker image without cache
-docker-compose build --no-cache
-docker-compose up -d --force-recreate
+# Pull the latest images and recreate containers
+docker-compose -f docker-compose.yaml pull
+docker-compose -f docker-compose.yaml up -d --force-recreate
 ```
 
 ---

@@ -12,6 +12,12 @@
 
 従来の「ガチャ」的な生成手法を捨て、**「脚本 -> アセット -> キーフレーム」** という産業用ワークフローを採用しています。AntSK API の先進的な AI モデルを深く統合することで、**「一文で完全な短編ドラマを生成し、脚本から完成動画までを全自動化」** しつつ、キャラクターの一貫性、シーンの連続性、そしてカメラワークの精密な制御を実現しました。
 
+## リリース方針
+
+近頃、無断転載やクレジットなしの流用、さらに悪質なケースが繰り返し発生しているため、今後の更新は公式 Docker イメージのみで提供し、更新済みソースコードの公開は行いません。
+
+このリポジトリは今後も公開ドキュメント兼、過去バージョンの参照用スナップショットとして残します。実際のデプロイとアップグレードは `docker-compose.yaml` と公式イメージを基準にしてください。
+
 ## UI ショーケース
 
 ### プロジェクト管理
@@ -111,10 +117,11 @@
 
 [**無料クレジットを取得する**](https://api.antsk.cn/) →
 
-## ⚠️ オープンソースと「無料」について（必ずお読みください）
+## ⚠️ ソース公開と「無料」について（必ずお読みください）
 
-* **モデル利用について**：本オープンソース版の標準ワークフローでは、能力に対応したモデル構成が必要です。例えば、大規模言語モデル（例：**GPT-5.2**）、画像モデル（例：**Nano Banana Pro**）、動画モデル（例：**Sora-2** / **Veo-3.1**）です。ほかの提供元やモデルを使う場合は、ご自身で改修・接続してください。
-* **オープンソース化の目的**：利用ハードルを下げ、より多くのクリエイターが素早く試せるようにすることです。コードはオープンソースで、モデル設定も差し替え可能です。
+* **今後の更新提供方法**：盗用、クレジットなし転載、悪質な流用が繰り返し発生しているため、今後の機能更新は公式 Docker イメージのみで提供し、公開ソースコードとしては同期しません。
+* **このリポジトリの位置づけ**：この公開リポジトリはドキュメントと過去バージョンの参照用スナップショットとして残します。デプロイとアップグレードは `docker-compose.yaml` から公式イメージを取得して行ってください。
+* **モデル利用について**：現在利用可能なバージョンでも、標準ワークフローには能力に対応したモデル構成が必要です。例えば、大規模言語モデル（例：**GPT-5.2**）、画像モデル（例：**Nano Banana Pro**）、動画モデル（例：**Sora-2** / **Veo-3.1**）です。ほかの提供元やモデルを使う場合は、ご自身で改修・接続してください。
 * **API 提供について**：私たちの API は、主に迅速な体験と統合のために提供しており、これを主要な収益源にする意図はありません。
 * **選択の自由**：もし私たちの API が期待に合わない場合は、OpenAI や Google の公式サービスを直接利用していただいて問題ありません（価格が高くても構いません）。その選択は尊重されます。
 * **「常時無料」前提について**：長期的に「無料であること」を最優先の判断基準にする場合、このプロジェクトは合わない可能性があります。
@@ -160,80 +167,35 @@ QRコードをスキャンして **BigBanana プロダクト体験グループ**
 
 ---
 
-## プロジェクトの起動
+## デプロイ
 
-### 方法 1：ローカル開発
-
-```bash
-# 1. リポジトリをクローン
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. 依存関係をインストール
-npm install
-
-# 3. 開発サーバーを起動
-npm run dev
-
-# 4. ブラウザでアクセス
-# http://localhost:3000 を開く
-```
-
-### 方法 2：Docker デプロイ（推奨）
+### docker-compose.yaml を使ってデプロイ
 
 ```bash
-# 1. リポジトリをクローン
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+# 1. カレントディレクトリに docker-compose.yaml があることを確認
 
-# 2. Docker Compose でビルドして起動
-docker-compose up -d --build
+# 2. 最新の公式イメージを取得
+docker-compose -f docker-compose.yaml pull
 
-# 3. ブラウザでアクセス
-# http://localhost:3005 を開く
-
-# ログを確認
-docker-compose logs -f
-
-# コンテナを停止
-docker-compose down
-```
-
-### 方法 3：Docker コマンドを使用
-
-```bash
-# 1. リポジトリをクローン
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. イメージをビルド
-docker build -t bigbanana-ai .
-
-# 3. コンテナを起動
-docker run -d -p 3005:80 --name bigbanana-ai-app bigbanana-ai
+# 3. サービスを起動
+docker-compose -f docker-compose.yaml up -d
 
 # 4. ブラウザでアクセス
 # http://localhost:3005 を開く
 
 # ログを確認
-docker logs -f bigbanana-ai-app
+docker-compose -f docker-compose.yaml logs -f
 
-# コンテナを停止
-docker stop bigbanana-ai-app
+# サービスを停止
+docker-compose -f docker-compose.yaml down
 ```
 
-### その他のコマンド
+### 最新版への更新
 
 ```bash
-# 本番用ビルド
-npm run build
-
-# 本番ビルドのプレビュー
-npm run preview
-
-# キャッシュなしで Docker イメージを強制再ビルド
-docker-compose build --no-cache
-docker-compose up -d --force-recreate
+# 最新イメージを取得してコンテナを再作成
+docker-compose -f docker-compose.yaml pull
+docker-compose -f docker-compose.yaml up -d --force-recreate
 ```
 
 ---

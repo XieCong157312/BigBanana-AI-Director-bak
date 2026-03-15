@@ -12,6 +12,12 @@
 
 它摇弃了传统的"抽卡式"生成，采用 **"Script-to-Asset-to-Keyframe"** 的工业化工作流。通过深度集成 AntSK API 的先进 AI 模型，实现 **"一句话生成完整短剧，从剧本到成片全自动化"**，同时精准控制角色一致性、场景连续性与镜头运动。
 
+## 版本发布说明
+
+由于近期出现大量抄袭、搬运不署名，且个别情况较为恶劣，后续版本将仅通过官方 Docker 镜像发布，不再继续公开同步源码。
+
+当前仓库保留为公开说明与历史参考版本，实际部署、更新与运行请以 `docker-compose.yaml` 和官方镜像为准。
+
 ## 界面展示
 
 ### 项目管理
@@ -113,13 +119,14 @@
 
 [**立即注册领取免费额度**](https://api.antsk.cn/) →
 
-## ⚠️ 开源与“免费”说明（请务必阅读）
+## ⚠️ 源码更新与“免费”说明（请务必阅读）
 
-* **模型使用说明**：本开源项目默认工作流需要使用对应能力的模型组合，例如大语言模型（如 **GPT-5.2**）、图像模型（如 **Nano Banana Pro**）以及视频模型（如 **Sora-2** / **Veo-3.1**）；如需对接其他渠道或模型，可自行修改与适配。
-* **关于开源初衷**：我们做开源，是希望降低使用门槛，让更多创作者能快速上手与集成；项目代码开源，模型配置也开放可替换。
+* **后续更新方式**：由于多次出现抄袭、不署名转载甚至恶意搬运，后续功能更新将只通过官方 Docker 镜像提供，不再同步公开源码。
+* **当前仓库定位**：当前公开仓库保留为说明文档与历史参考版本，部署与升级请直接使用 `docker-compose.yaml` 拉取官方镜像。
+* **模型使用说明**：当前可运行版本默认工作流仍需要对应能力的模型组合，例如大语言模型（如 **GPT-5.2**）、图像模型（如 **Nano Banana Pro**）以及视频模型（如 **Sora-2** / **Veo-3.1**）；如需对接其他渠道或模型，可自行修改与适配。
 * **关于 API 服务**：我们提供的 API 主要用于帮助大家快速体验与接入，并非依赖这部分收入盈利。
 * **关于选择自由**：如果你对我们的 API 不满意，完全可以直接使用 OpenAI 或 Google 官方服务（即使价格更高也没关系），这是正常且被尊重的选择。
-* **关于“永久免费”预期**：如果你的核心诉求是长期“必须免费”，并以“免费即唯一标准”评估项目，这个项目可能不适合你；更建议体验千问、元宝、豆包等产品（顺便奶茶红包也别错过 😄）。
+* **关于“永久免费”预期**：如果你的核心诉求是长期“必须免费”，并以“免费即唯一标准”评估项目，这个项目可能不适合你；更建议体验千问、元宝、豆包等产品。
 
 ---
 
@@ -162,80 +169,35 @@
 
 ---
 
-## 项目启动
+## 项目部署
 
-### 方式一：本地开发
-
-```bash
-# 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. 安装依赖
-npm install
-
-# 3. 启动开发服务器
-npm run dev
-
-# 4. 访问应用
-# 浏览器打开 http://localhost:3000
-```
-
-### 方式二：Docker 部署（推荐）
+### 使用 docker-compose.yaml 部署（推荐）
 
 ```bash
-# 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+# 1. 确保当前目录包含 docker-compose.yaml
 
-# 2. 使用 Docker Compose 构建并启动
-docker-compose up -d --build
+# 2. 拉取最新官方镜像
+docker-compose -f docker-compose.yaml pull
 
-# 3. 访问应用
-# 浏览器打开 http://localhost:3005
-
-# 查看日志
-docker-compose logs -f
-
-# 停止容器
-docker-compose down
-```
-
-### 方式三：使用 Docker 命令
-
-```bash
-# 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
-
-# 2. 构建镜像
-docker build -t bigbanana-ai .
-
-# 3. 运行容器
-docker run -d -p 3005:80 --name bigbanana-ai-app bigbanana-ai
+# 3. 启动服务
+docker-compose -f docker-compose.yaml up -d
 
 # 4. 访问应用
 # 浏览器打开 http://localhost:3005
 
 # 查看日志
-docker logs -f bigbanana-ai-app
+docker-compose -f docker-compose.yaml logs -f
 
-# 停止容器
-docker stop bigbanana-ai-app
+# 停止服务
+docker-compose -f docker-compose.yaml down
 ```
 
-### 其他命令
+### 更新到最新版本
 
 ```bash
-# 构建生产版本
-npm run build
-
-# 预览生产版本
-npm run preview
-
-# 强制无缓存重新构建 Docker 镜像
-docker-compose build --no-cache
-docker-compose up -d --force-recreate
+# 拉取最新镜像并重建容器
+docker-compose -f docker-compose.yaml pull
+docker-compose -f docker-compose.yaml up -d --force-recreate
 ```
 
 ---
