@@ -169,33 +169,33 @@ No client download is required. Use the web version directly in your browser:
 
 ## Deployment
 
-### Deploy with docker-compose.yaml
+### First-Time Deployment
 
 ```bash
-# 1. Make sure docker-compose.yaml is in the current directory
+# 1. Clone the repository
+git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
+cd BigBanana-AI-Director
 
-# 2. Pull the latest official images
-docker-compose -f docker-compose.yaml pull
+# 2. Start the services
+# Docker Compose will automatically pull the required official images on first start
+docker-compose up -d
 
-# 3. Start the services
-docker-compose -f docker-compose.yaml up -d
-
-# 4. Open in browser
+# 3. Open in browser
 # Visit http://localhost:3005
 
 # View logs
-docker-compose -f docker-compose.yaml logs -f
+docker-compose logs -f
 
 # Stop the services
-docker-compose -f docker-compose.yaml down
+docker-compose down
 ```
 
 ### Update to the latest release
 
 ```bash
 # Pull the latest images and recreate containers
-docker-compose -f docker-compose.yaml pull
-docker-compose -f docker-compose.yaml up -d --force-recreate
+docker-compose pull
+docker-compose up -d --force-recreate
 ```
 
 ---

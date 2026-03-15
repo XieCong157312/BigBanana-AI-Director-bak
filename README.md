@@ -173,33 +173,33 @@
 
 ## 项目部署
 
-### 使用 docker-compose.yaml 部署（推荐）
+### 首次部署（推荐）
 
 ```bash
-# 1. 确保当前目录包含 docker-compose.yaml
+# 1. 克隆项目
+git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
+cd BigBanana-AI-Director
 
-# 2. 拉取最新官方镜像
-docker-compose -f docker-compose.yaml pull
+# 2. 启动服务
+# 首次启动时会自动拉取所需官方镜像
+docker-compose up -d
 
-# 3. 启动服务
-docker-compose -f docker-compose.yaml up -d
-
-# 4. 访问应用
+# 3. 访问应用
 # 浏览器打开 http://localhost:3005
 
 # 查看日志
-docker-compose -f docker-compose.yaml logs -f
+docker-compose logs -f
 
 # 停止服务
-docker-compose -f docker-compose.yaml down
+docker-compose down
 ```
 
 ### 更新到最新版本
 
 ```bash
 # 拉取最新镜像并重建容器
-docker-compose -f docker-compose.yaml pull
-docker-compose -f docker-compose.yaml up -d --force-recreate
+docker-compose pull
+docker-compose up -d --force-recreate
 ```
 
 ---

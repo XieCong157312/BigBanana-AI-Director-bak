@@ -171,33 +171,33 @@ QRコードをスキャンして **BigBanana プロダクト体験グループ**
 
 ## デプロイ
 
-### docker-compose.yaml を使ってデプロイ
+### 初回デプロイ
 
 ```bash
-# 1. カレントディレクトリに docker-compose.yaml があることを確認
+# 1. リポジトリをクローン
+git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
+cd BigBanana-AI-Director
 
-# 2. 最新の公式イメージを取得
-docker-compose -f docker-compose.yaml pull
+# 2. サービスを起動
+# 初回起動時は必要な公式イメージが自動的に取得されます
+docker-compose up -d
 
-# 3. サービスを起動
-docker-compose -f docker-compose.yaml up -d
-
-# 4. ブラウザでアクセス
+# 3. ブラウザでアクセス
 # http://localhost:3005 を開く
 
 # ログを確認
-docker-compose -f docker-compose.yaml logs -f
+docker-compose logs -f
 
 # サービスを停止
-docker-compose -f docker-compose.yaml down
+docker-compose down
 ```
 
 ### 最新版への更新
 
 ```bash
 # 最新イメージを取得してコンテナを再作成
-docker-compose -f docker-compose.yaml pull
-docker-compose -f docker-compose.yaml up -d --force-recreate
+docker-compose pull
+docker-compose up -d --force-recreate
 ```
 
 ---
