@@ -210,11 +210,13 @@ docker-compose up -d --force-recreate
 
 ---
 
-## Project Origin
+## Project Inspiration
 
-This project is based on [CineGen-AI](https://github.com/Will-Water/CineGen-AI) and has been further developed with enhanced features and optimizations.
+Some of this project's product ideas and workflow design were inspired by the publicly available content of [CineGen-AI](https://github.com/Will-Water/CineGen-AI) at commit `6505c9076f8d72df837e5062b8df1d90319a4e83`.
 
-Thanks to the original author for their open-source contribution!
+This note is only intended to identify the inspiration source and does not imply ongoing code synchronization with later versions of that project or any commercial authorization relationship.
+
+Thanks to the original author for openly sharing their work and inspiration.
 
 ---
 
